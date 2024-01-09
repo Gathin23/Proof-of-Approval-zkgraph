@@ -1,13 +1,13 @@
 specVersion: 0.0.2
 apiVersion: 0.0.2
 name: Proof-of-Approved-zkgraph
-description: "A zkgraph that proves that a user has approved a token transfer."
+description: "A zkgraph that proves that a user/contract has been approved."
 repository: https://github.com/Gathin23/Proof-of-Approved-zkgraph
 dataSources:
   - kind: ethereum
-    network: mainnet
+    network: sepolia
     event:
-      - address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+      - address: '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
         events: 
           - "Approval(address,address,uint256)"
 
@@ -18,5 +18,5 @@ mapping:
 
 dataDestinations:
   - kind: ethereum
-    network: mainnet
+    network: sepolia
     address: "0x0000000000000000000000000000000000000001"

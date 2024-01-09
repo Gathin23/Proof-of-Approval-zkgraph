@@ -1,9 +1,9 @@
 //@ts-ignore
 import { require } from "@hyperoracle/zkgraph-lib";
-import { Bytes, Block, Event } from "@hyperoracle/zkgraph-lib";
+import { Bytes, Block, Event, Address } from "@hyperoracle/zkgraph-lib";
 
-let addr = Bytes.fromHexString('0xa60ecf32309539dd84f27a9563754dca818b815e');
-let esig_sync = Bytes.fromHexString("0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1");
+let addr = Bytes.fromHexString('0xdAC17F958D2ee523a2206206994597C13D831ec7');
+let esig_sync = Bytes.fromHexString("0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925");
 
 export function handleBlocks(blocks: Block[]): Bytes {
   // init output state
@@ -30,7 +30,8 @@ export function handleBlocks(blocks: Block[]): Bytes {
   );
 
   // set state to the address of the 1st (matched) event, demo purpose only.
-  state = events[0].address;
+  state = Address.fromString(events[0].topic1.toHexString());
+  console.log(events[0].topic1.toHexString());
 
   return state
 }

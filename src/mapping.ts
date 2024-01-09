@@ -7,7 +7,7 @@ let esig_sync = Bytes.fromHexString("0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f
 
 export function handleBlocks(blocks: Block[]): Bytes {
   // init output state
-  let state: Bytes;
+  let approvedAddress: Address = Address.zero();
 
   // #1 can access all (matched) events of the latest block
   let events: Event[] = blocks[0].events;
@@ -29,9 +29,20 @@ export function handleBlocks(blocks: Block[]): Bytes {
     && events[0].data == eventsByAcctEsig[0].data
   );
 
-  // set state to the address of the 1st (matched) event, demo purpose only.
-  state = Address.fromString(events[0].topic2.toHexString());
-  console.log(events[0].topic2.toHexString());
+  // set state to the address of the 1st (matched) event
+  // state = Address.fromString(events[0].topic2.toHexString());
+  // console.log(events[0].topic2.toHexString());
 
-  return state
+  for (let i = events.length - 1; i >= 0; i--) {
+    if (
+      events[i].address.equals(addr) &&
+      events[i].esig.equals(esig_sync)
+    ) {
+      approvedAddress = Address.fromString(events[i].topic2.toHexString());
+      console.log(events[i].topic2.toHexString());
+      break;
+    }
+  }
+
+  return approvedAddress
 }

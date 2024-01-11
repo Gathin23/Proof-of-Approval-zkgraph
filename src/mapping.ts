@@ -29,10 +29,6 @@ export function handleBlocks(blocks: Block[]): Bytes {
     && events[0].data == eventsByAcctEsig[0].data
   );
 
-  // set state to the address of the 1st (matched) event
-  // state = Address.fromString(events[0].topic2.toHexString());
-  // console.log(events[0].topic2.toHexString());
-
   for (let i = events.length - 1; i >= 0; i--) {
     if (
       events[i].address.equals(addr) &&

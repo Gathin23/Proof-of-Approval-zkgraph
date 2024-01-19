@@ -1,4 +1,4 @@
-# Proof of Approved - zkgraph
+# Proof of Approval - zkgraph
 
 ### This zkgraph tracks all the approved address for USDT on sepolia
 
